@@ -5,6 +5,7 @@ import 'package:the_cipher_app/app/core/services/graphql_client/custom_graphql_c
 import 'package:the_cipher_app/app/core/services/graphql_client/custom_graphql_client_impl.dart';
 import 'package:the_cipher_app/app/core/services/remote_config/custom_remote_config.dart';
 import 'package:the_cipher_app/app/core/services/user_service/user_preferences_service.dart';
+import 'package:the_cipher_app/app/modules/auth/auth_module.dart';
 
 import './app_controller.dart';
 import '../splash/ui/splash_module.dart';
@@ -19,9 +20,7 @@ class AppModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ModuleRoute(
-      '/',
-      module: SplashModule(),
-    ),
+    ModuleRoute('/', module: SplashModule()),
+    ModuleRoute('/auth', module: AuthModule()),
   ];
 }

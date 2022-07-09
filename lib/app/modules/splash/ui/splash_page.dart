@@ -1,11 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:the_cipher_app/app/core/services/remote_config/custom_remote_config.dart';
 import 'package:the_cipher_app/app/core/utils/init_state_complete.dart';
 
 import './splash_controller.dart';
+import '../../../core/ui/widgets/loading_widget.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({
@@ -30,30 +30,28 @@ class _SplashPageState extends State<SplashPage> with InitStateComplete<SplashPa
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashPage'),
-      ),
       body: BlocConsumer<SplashController, SplashState>(
         bloc: widget._controller,
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.loading) {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            );
+            LoadingWidget.showLoading(context);
+          } else {
+            LoadingWidget.hideLoading();
           }
           if (state.user.email.isNotEmpty) {
-            log('logado');
           } else {
-            log('deslogado');
+            Modular.to.pushReplacementNamed('/auth/login');
           }
         },
         builder: (context, state) {
-          return Container();
+          return DecoratedBox(
+            decoration: const BoxDecoration(
+              color: Color(0xFF0533F2),
+            ),
+            child: Center(
+              child: Image.asset('assets/images/electric-guitar.png'),
+            ),
+          );
         },
       ),
     );
