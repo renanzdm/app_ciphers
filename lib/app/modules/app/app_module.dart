@@ -13,7 +13,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton<CustomGraphqlClient>((i) => CustomGraphqlClientImpl(customRemoteConfig: CustomRemoteConfig())),
-    Bind.lazySingleton<UserServicePreferences>((i) => UserServicePreferencesImpl(CustomSharedPreferencesImpl())),
+    Bind.lazySingleton<UserPreferencesService>((i) => UserPreferencesServiceImpl(CustomSharedPreferencesImpl())),
     BlocBind.lazySingleton((i) => AppController()),
   ];
 

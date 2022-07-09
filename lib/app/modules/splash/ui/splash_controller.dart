@@ -6,7 +6,7 @@ import 'package:the_cipher_app/app/core/services/user_service/user_preferences_s
 part 'splash_state.dart';
 
 class SplashController extends Cubit<SplashState> {
-  final UserServicePreferences _userServicePreferences;
+  final UserPreferencesService _userServicePreferences;
   SplashController(this._userServicePreferences) : super(SplashState.initial());
 
   Future<void> getUser() async {

@@ -1,13 +1,13 @@
 import 'package:the_cipher_app/app/core/model/user_model.dart';
 import 'package:the_cipher_app/app/core/services/custom_shared_preferences/custom_shared_preferences.dart';
 
-abstract class UserServicePreferences {
+abstract class UserPreferencesService {
   Future<UserModel> getUser();
 }
 
-class UserServicePreferencesImpl implements UserServicePreferences {
+class UserPreferencesServiceImpl implements UserPreferencesService {
   final CustomSharedPreferences _sharedPreferences;
-  UserServicePreferencesImpl(this._sharedPreferences);
+  UserPreferencesServiceImpl(this._sharedPreferences);
 
   @override
   Future<UserModel> getUser() async {
