@@ -16,9 +16,7 @@ class CustomGraphqlClientImpl implements CustomGraphqlClient {
     final hasuraAdminSecret = await customRemoteConfig.fetchString(key: 'x_hasura_admin_secret');
     final Link link = HttpLink(
       hasuraLink,
-      defaultHeaders: {
-        'x-hasura-admin-secret': hasuraAdminSecret,
-      },
+      defaultHeaders: {'x-hasura-admin-secret': hasuraAdminSecret},
     );
     _graphQLClient = GraphQLClient(
       cache: GraphQLCache(),
