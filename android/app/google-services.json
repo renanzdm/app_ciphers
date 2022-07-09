@@ -37,6 +37,13 @@
             {
               "client_id": "469688883395-e60gmarlb34dt225gfi9v1as5hjg63ov.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "469688883395-op772o1th655b4642n9vcdha4ieib22i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.renan.theCipherApp"
+              }
             }
           ]
         }

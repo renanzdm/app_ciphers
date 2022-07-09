@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_cipher_app/app/core/services/remote_config/custom_remote_config.dart';
 import 'package:the_cipher_app/app/core/utils/init_state_complete.dart';
 
 import './splash_controller.dart';
@@ -16,8 +17,12 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with InitStateComplete {
+  final remoteConfig = CustomRemoteConfig();
+
   @override
-  void completeInitState() async {}
+  void completeInitState() async {
+    await remoteConfig.setConfigRemote();
+  }
 
   @override
   Widget build(BuildContext context) {

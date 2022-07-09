@@ -1,15 +1,16 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class CustomRemoteConfig {
-  final remoteConfig = FirebaseRemoteConfig.instance;
+  final _remoteConfig = FirebaseRemoteConfig.instance;
   Future<void> setConfigRemote() async {
-    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+    await _remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 1),
       minimumFetchInterval: const Duration(hours: 1),
     ));
+    await _remoteConfig.fetchAndActivate();
   }
 
-  Future<RemoteConfigValue> fetchValue({required String key}) async {
-    return remoteConfig.getValue(key);
+  Future<String> fetchString({required String key}) async {
+    return _remoteConfig.getString(key);
   }
 }
