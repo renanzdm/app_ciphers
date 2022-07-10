@@ -6,9 +6,11 @@ class CustomSharedPreferencesMock extends Mock implements CustomSharedPreference
 
 void main() {
   CustomSharedPreferences customSharedPreferences = CustomSharedPreferencesMock();
-  test('custom shared preferences impl ...', () async {
-    when(() => customSharedPreferences.getJson(key: 'user')).thenAnswer((invocation) => Future.value({'email': 'Renan'}));
+  test('custom shared preferences impl success...', () async {
+    when(() => customSharedPreferences.getJson(key: 'user')).thenAnswer((invocation) => Future.value({'user_email': 'Renan'}));
     final response = await customSharedPreferences.getJson(key: 'user');
     expect(response, isA<Map<String, dynamic>>());
+    expect(response['user_email'], isNotEmpty);
+    expect(response['user_email'], equals('Renan'));
   });
 }
