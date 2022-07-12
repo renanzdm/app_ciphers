@@ -7,7 +7,9 @@ part 'splash_state.dart';
 
 class SplashController extends Cubit<SplashState> {
   final UserPreferencesService _userServicePreferences;
-  SplashController(this._userServicePreferences) : super(SplashState.initial());
+  SplashController({required UserPreferencesService userServicePreferences})
+      : _userServicePreferences = userServicePreferences,
+        super(SplashState.initial());
 
   Future<void> getUser() async {
     emit(state.copyWith(loading: true));

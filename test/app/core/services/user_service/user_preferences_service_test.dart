@@ -11,7 +11,7 @@ void main() {
   late final CustomSharedPreferences customSharedPreferences;
   setUpAll(() {
     customSharedPreferences = CustomSharedPreferencesMock();
-    userPreferencesService = UserPreferencesServiceImpl(customSharedPreferences);
+    userPreferencesService = UserPreferencesServiceImpl(customSharedPreferences: customSharedPreferences);
   });
 
   test('user preferences service get user with success...', () async {

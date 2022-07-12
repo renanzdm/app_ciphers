@@ -6,12 +6,12 @@ abstract class UserPreferencesService {
 }
 
 class UserPreferencesServiceImpl implements UserPreferencesService {
-  final CustomSharedPreferences _sharedPreferences;
-  UserPreferencesServiceImpl(this._sharedPreferences);
+  final CustomSharedPreferences _customSharedPreferences;
+  UserPreferencesServiceImpl({required CustomSharedPreferences customSharedPreferences}) : _customSharedPreferences = customSharedPreferences;
 
   @override
   Future<UserModel> getUser() async {
-    var json = await _sharedPreferences.getJson(key: 'user');
+    var json = await _customSharedPreferences.getJson(key: 'user');
     return UserModel.fromMap(json);
   }
 }

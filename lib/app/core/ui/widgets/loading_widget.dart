@@ -36,7 +36,7 @@ class _LoadingProgressState extends State<LoadingProgress> with SingleTickerProv
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1));
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
     _controller.forward();
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed || status == AnimationStatus.dismissed) {
