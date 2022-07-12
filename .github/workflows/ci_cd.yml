@@ -1,13 +1,13 @@
-name: CI
+name: CI_CD
 
 on:
 
   workflow_dispatch:
     inputs:
-      test:
-        description: 'Run tests'
+      beta:
+        description: 'Release Beta App Play Store'
         required: true
-        default: 'test' 
+        default: 'beta' 
         
   push:
     branches:
