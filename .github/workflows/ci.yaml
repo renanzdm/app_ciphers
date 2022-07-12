@@ -1,6 +1,16 @@
 name: CI
 
 on:
+
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Run tests'
+        required: true
+        default: 'test' 
+     
+
+
   push:
     branches:
       - develop
