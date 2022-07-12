@@ -9,9 +9,7 @@ on:
         required: true
         default: 'beta' 
         
-  push:
-    branches:
-      - develop
+
 
 env:
   FLUTTER_VERSION: 3.0.4
@@ -77,7 +75,7 @@ jobs:
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
       - name: Fastlane exec
-        run: bundle exec fastlane ${{ github.event.inputs.lane || 'test' }}
+        run: bundle exec fastlane ${{ github.event.inputs.lane}}
         env: 
             PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
         working-directory: android
