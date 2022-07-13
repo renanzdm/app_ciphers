@@ -4,7 +4,7 @@ default_platform(:android)
 platform :android do
   desc "Submit a new beta build to Google Play"
   lane :beta do
-    sh "flutter build appbundle"
+    sh "flutter clean && flutter pub get && flutter build appbundle -v"
     upload_to_play_store(
       track: 'internal',
       release_status: 'draft',
