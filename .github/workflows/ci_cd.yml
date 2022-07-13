@@ -16,23 +16,13 @@ env:
 
 jobs:
   flutter_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-         os: [macos-latest]
-         include:
-          - os: macos-latest
-            flutter_path: /Users/runner/hostedtoolcache/flutter
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: read
       checks: write
     steps:
       - name: Flutter Setup
-        uses: actions/cache@v2
-        with:
-          path: ${{ matrix.flutter_path }}
-          key: ${{ runner.os }}-flutter-install-cache-${{ env.FLUTTER_VERSION }}
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
