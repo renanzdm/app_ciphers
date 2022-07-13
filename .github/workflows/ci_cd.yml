@@ -15,7 +15,7 @@ env:
   java_version: "12.x"
 
 jobs:
-  flutter_test:
+  deploy_app:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -48,18 +48,12 @@ jobs:
 
 
 
-      - name: Define version code with offset
-        env:
-         RUN_NUMBER: ${{ github.run_number }}
-         INITIAL_VERSION_CODE: 73
-        run: |
-           VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
-           echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
+
       - name: Update version code
         uses: chkfung/android-version-actions@v1.1
         with:
            gradlePath: android/app/build.gradle
-           versionCode: ${{ env.version_code }}
+           versionCode: ${{ github.run_number }}
 
            
        # Setup Ruby, Bundler, and Gemfile dependencies
