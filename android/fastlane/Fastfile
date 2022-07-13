@@ -7,10 +7,10 @@ platform :android do
     version_code = google_play_track_version_codes(
       package_name: "br.com.renan.the_cipher_app",  
       track: "internal",                
-      json_key: ENV['PLAY_STORE_CONFIG_JSON'],
-     )
-     version_code_play_store = version_code[0].to_i
-     update_version_code = version_code_play_store + 1
+      json_key: ENV['PLAY_STORE_CONFIG_JSON']
+    )
+    version_code_play_store = version_code[0].to_i
+    update_version_code = version_code_play_store + 1
     sh "flutter build appbundle"
     upload_to_play_store(
       track: 'internal',
