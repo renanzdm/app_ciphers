@@ -8,9 +8,8 @@ platform :android do
     upload_to_play_store(
       track: 'internal',
       release_status: 'draft',
-      version_code: update_version_code.to_i
       aab: '../build/app/outputs/bundle/release/app-release.aab',
-      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON']
       )
   end
 
