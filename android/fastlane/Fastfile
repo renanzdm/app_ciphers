@@ -4,10 +4,18 @@ default_platform(:android)
 platform :android do
   desc "Submit a new beta build to Google Play"
   lane :beta do
+    version_code = google_play_track_version_codes(
+      package_name: "br.com.renan.the_cipher_app",  
+      track: "internal",                
+      json_key: ENV['PLAY_STORE_CONFIG_JSON'],
+     )
+     version_code_play_store = version_code[0].to_i
+     update_version_code = version_code_play_store + 1
     sh "flutter build appbundle"
     upload_to_play_store(
       track: 'internal',
       release_status: 'draft',
+      version_code: update_version_code.to_i
       aab: '../build/app/outputs/bundle/release/app-release.aab',
       json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
       )
@@ -17,6 +25,7 @@ platform :android do
   lane :deploy do
     gradle(task: "clean assembleRelease")
     upload_to_play_store
+   
   end
 end
 
