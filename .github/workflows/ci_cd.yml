@@ -48,6 +48,18 @@ jobs:
           ruby-version: "2.6"
           bundler-cache: true
           working-directory: android
+      - name: Define version code with offset
+        env:
+           RUN_NUMBER: ${{ github.run_number }}
+           INITIAL_VERSION_CODE: 73
+        run: |
+          VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
+          echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
+      - name: Update version code
+        uses: chkfung/android-version-actions@v1.1
+        with:
+           gradlePath: android/app/build.gradle
+           versionCode: ${{ env.version_code }}
       - name: Configure Keystore
         run: |
           echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
@@ -61,6 +73,12 @@ jobs:
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+           name: assets
+           path: |
+               ${{ github.workspace }}/app/build/outputs/bundle/release
       - name: Fastlane exec
         run: bundle exec fastlane beta
         env: 
