@@ -12,7 +12,7 @@ on:
 env:
   FLUTTER_VERSION: 3.0.4
   PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
-  java_version: "12.x"
+  java_version: "11.x"
 
 jobs:
   deploy_app:
