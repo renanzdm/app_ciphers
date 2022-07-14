@@ -4,14 +4,12 @@ default_platform(:android)
 platform :android do
   desc "Submit a new beta build to Google Play"
   lane :beta do
-    sh "flutter clean && flutter pub get && flutter build appbundle -v"
+    sh "flutter build appbundle"
     upload_to_play_store(
       track: 'internal',
       release_status: 'draft',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
-      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
-      version_name: '7.0.0',
-      version_code: '4'
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON']
       )
   end
 
