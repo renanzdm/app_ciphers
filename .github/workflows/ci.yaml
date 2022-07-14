@@ -9,6 +9,7 @@ on:
 env:
   FLUTTER_VERSION: 3.0.4
   java_version: "12.x"
+  PUB_CACHE: ~/.pub-cache
 
 jobs:
   deploy_app:
@@ -25,10 +26,10 @@ jobs:
       checks: write
     steps:
       - name: Flutter Setup
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
-          path: ${{ matrix.flutter_path }}
-          key: ${{ runner.os }}-flutter-install-cache-${{ env.FLUTTER_VERSION }}
+          path: ${{ env.PUB_CACHE }}
+          key: deps-${{ hashFiles('**/pubspec.lock') }}
       - uses: actions/checkout@v3
       - uses: subosito/flutter-action@v2
         with:
