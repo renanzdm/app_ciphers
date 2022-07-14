@@ -8,7 +8,7 @@ on:
         description: 'Release Beta App Play Store'
         required: true
         default: 'beta' 
-        
+
 env:
   FLUTTER_VERSION: 3.0.4
   PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}

@@ -3,7 +3,7 @@ default_platform(:android)
 
 platform :android do
   desc "Submit a new beta build to Google Play"
-  lane :beta do
+  lane :beta_android_deploy do
     sh "flutter build appbundle"
     upload_to_play_store(
       track: 'internal',
@@ -14,10 +14,12 @@ platform :android do
   end
 
   desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
-   
+  lane :_android_deploy do
+    sh "flutter build appbundle"
+    upload_to_play_store(
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON']
+    )
   end
 end
 
