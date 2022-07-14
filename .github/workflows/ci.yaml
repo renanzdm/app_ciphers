@@ -47,7 +47,7 @@ jobs:
         with:
           min_coverage: 0
 
-      - run: flutter build apk
+      # - run: flutter build apk
       
       - run: flutter build ipa
 
