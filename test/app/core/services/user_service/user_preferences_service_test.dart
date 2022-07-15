@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:the_cipher_app/app/core/error/services_error.dart';
 import 'package:the_cipher_app/app/core/model/user_model.dart';
 import 'package:the_cipher_app/app/core/services/custom_shared_preferences/custom_shared_preferences.dart';
 import 'package:the_cipher_app/app/core/services/user_service/user_preferences_service.dart';
+import 'package:the_cipher_app/app/core/utils/either.dart';
 
 class CustomSharedPreferencesMock extends Mock implements CustomSharedPreferences {}
 
@@ -19,13 +21,15 @@ void main() {
       () => customSharedPreferences.getJson(key: 'user'),
     ).thenAnswer((invocation) => Future.value({'user_email': 'Renan', 'user_name': 'Renan', 'id': 12, 'jwt': 'token'}));
     var response = await userPreferencesService.getUser();
-    expect(response, isA<UserModel>());
+    expect(response, isA<Right>());
+    expect(response.fold((l) => l, (r) => r), isA<UserModel>());
   });
   test('user preferences service get user with error key value...', () async {
     when(
       () => customSharedPreferences.getJson(key: 'user'),
-    ).thenAnswer((invocation) => Future.value({'user_emai': 'Renan', 'user_name': 'Renan', 'id': 12, 'jwt': 'token'}));
+    ).thenThrow(Exception());
     var response = await userPreferencesService.getUser();
-    expect(response.email, isEmpty);
+    expect(response, isA<Left>());
+    expect(response.fold((l) => l, (r) => r), isA<UserNotFoundError>());
   });
 }

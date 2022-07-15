@@ -52,7 +52,7 @@ jobs:
         with:
           java-version: ${{ env.java_version }} 
 
-      - run: flutter build appbundle
+      - run: flutter build apk
       
       - run: flutter build ipa
 
