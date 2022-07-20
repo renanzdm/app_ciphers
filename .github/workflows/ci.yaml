@@ -52,7 +52,7 @@ jobs:
 
       - run: flutter build apk --debug --split-per-abi
       
-      - run: flutter build ios --no-codesign
+      # - run: flutter build ios --no-codesign
 
       - name: Upload android build artifacts
         uses: actions/upload-artifact@v2
@@ -60,8 +60,8 @@ jobs:
            name: cipher_abb_android
            path: ${{ github.workspace }}/build/app/outputs/bundle/release
 
-      # - name: Upload ios build artifacts
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #      name: cipher_abb_ios
-      #      path: ${{ github.workspace }}/build/app/outputs/bundle/release
+      - name: Upload ios build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+           name: cipher_abb_ios
+           path: ${{ github.workspace }}/build/app/outputs/bundle/release

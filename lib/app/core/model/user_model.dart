@@ -4,7 +4,7 @@ class UserModel {
   final String jwt;
   final int id;
 
-  UserModel({this.name = '', this.email = '', this.jwt = '', this.id = -1});
+  const UserModel({this.name = '', this.email = '', this.jwt = '', this.id = -1});
 
   UserModel copyWith({
     String? name,
@@ -24,7 +24,7 @@ class UserModel {
     return UserModel(
       id: map['id'] ?? -1,
       name: map['user_name'] ?? '',
-      email: map['user_email'] ?? '',
+      email: map['email'] ?? '',
       jwt: map['jwt'] ?? '',
     );
   }

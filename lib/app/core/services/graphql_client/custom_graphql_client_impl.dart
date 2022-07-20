@@ -30,4 +30,10 @@ class CustomGraphqlClientImpl implements CustomGraphqlClient {
     final client = await _getClient;
     return await client.query(QueryOptions(document: gql(document), variables: variables));
   }
+
+  @override
+  Future<QueryResult<Object?>> mutation({required String document, required Map<String, dynamic> variables}) async {
+    final client = await _getClient;
+    return await client.mutate(MutationOptions(document: gql(document), variables: variables));
+  }
 }

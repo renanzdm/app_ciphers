@@ -1,10 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:the_cipher_app/app/core/error/services_error.dart';
 import 'package:the_cipher_app/app/core/model/user_model.dart';
 import 'package:the_cipher_app/app/core/services/custom_shared_preferences/custom_shared_preferences.dart';
 import 'package:the_cipher_app/app/core/services/user_service/user_preferences_service.dart';
-import 'package:the_cipher_app/app/core/utils/either.dart';
 
 class CustomSharedPreferencesMock extends Mock implements CustomSharedPreferences {}
 

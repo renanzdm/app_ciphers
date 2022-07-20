@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:the_cipher_app/app/core/error/base_error.dart';
 
 class UserNotFoundError extends BaseError {

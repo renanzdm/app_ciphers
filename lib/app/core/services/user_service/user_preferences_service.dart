@@ -1,8 +1,8 @@
+import 'package:dartz/dartz.dart';
 import 'package:the_cipher_app/app/core/model/user_model.dart';
 import 'package:the_cipher_app/app/core/services/custom_shared_preferences/custom_shared_preferences.dart';
 
 import '../../error/services_error.dart';
-import '../../utils/either.dart';
 
 abstract class UserPreferencesService {
   Future<Either<UserNotFoundError, UserModel>> getUser();
